@@ -1,3 +1,5 @@
 # robotstxt.org/
 
 User-agent: *
+# Not allow spiders for now ;)
+Disallow:/
