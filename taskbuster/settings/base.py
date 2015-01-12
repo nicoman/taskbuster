@@ -23,6 +23,9 @@ def get_env_variable(var_name):
         error_msg = "Set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
+# Multi language
+from django.utils.translation import ugettext_lazy as _
+
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 ALLOWED_HOSTS = []
@@ -41,6 +44,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,4 +92,14 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),
+    )
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    )
+
+# Where is the locale files
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
     )
